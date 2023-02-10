@@ -51,6 +51,7 @@ namespace ChoseNumber
             if (_validAge && _validName)
             {
                 UserScore score = new UserScore(textBoxName.Text, (Gender)comboBoxSex.SelectedItem, int.Parse(textBoxAge.Text));
+                LevelInfo level = new LevelInfo(1);
             } else
             {
                 MessageBox.Show("Поля заполнены некорректно!");
