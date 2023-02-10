@@ -5,6 +5,7 @@ namespace ChoseNumber
     public class LevelInfo
     {
         public double Time { get; set; } = 0.00;
+        public int Score { get; set; } = 0;
         public int Level { get; set; }
         private int[,] numbers = new int[5,5];
         private int currentStep = 0;
@@ -39,19 +40,25 @@ namespace ChoseNumber
             }
         }
 
-        public bool MakeStep(int i, int j)
+        public bool MakeStep(int value)
         {
-            if (numbers[i,j] == currentStep + 1)
+            if (value == currentStep + 1)
             {
                 currentStep++;
                 return true;
             }
+            Score++;
             return false;
         }
 
         public int[,] GetNumbers()
         {
             return numbers;
+        }
+
+        public bool IsFinish()
+        {
+            return currentStep == 1;
         }
     }
 }

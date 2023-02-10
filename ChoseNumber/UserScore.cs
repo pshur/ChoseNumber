@@ -6,6 +6,7 @@
         public char Sex { get; }
         public int Age { get; }
         public int[] Score  { get; } = new int[5];
+        public double[] Time { get; } = new double[5];
 
         public UserScore(string _name, Gender gender, int _age)
         {
@@ -19,6 +20,16 @@
             for (int i = 0; i < Score.Length; i++) 
             {
                 sum += Score[i];
+            }
+            return sum;
+        }
+
+        public double AllTime()
+        {
+            double sum = 0;
+            for (int i = 0; i < Time.Length; i++)
+            {
+                sum += Time[i];
             }
             return sum;
         }

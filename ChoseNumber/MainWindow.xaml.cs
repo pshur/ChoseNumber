@@ -48,14 +48,19 @@ namespace ChoseNumber
 
         private void startGame_Click(object sender, RoutedEventArgs e)
         {
-            if (_validAge && _validName)
+            /*if (_validAge && _validName)
             {
                 UserScore score = new UserScore(textBoxName.Text, (Gender)comboBoxSex.SelectedItem, int.Parse(textBoxAge.Text));
-                LevelInfo level = new LevelInfo(1);
+                LavelGame game = new LavelGame(score);
+                game.Show();
+                this.Close();
             } else
             {
                 MessageBox.Show("Поля заполнены некорректно!");
-            }
+            }*/
+            LavelGame game = new LavelGame(null);
+            game.Show();
+            this.Close();
         }
 
         private void showResults_Click(object sender, RoutedEventArgs e)
