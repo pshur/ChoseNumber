@@ -36,26 +36,32 @@ namespace ChoseNumber
             return levels[levelId-1].IsFinish();
         }
 
+        public void SetTime(long time, int levelId)
+        {
+            levels[levelId - 1].Time = time;
+        }
+
         public string Statistic()
         {
             string stat = "";
-            double result = 0.0;
+            long result = 0;
             int allscore = 0;
             for (int i = 0; i < 5; i++)
             {
                 result += levels[i].Time;
                 allscore += levels[i].Score;
-                stat += "Уровень " + (i + 1) + ": " + levels[i].Time.ToString() + " (ошибок: " + levels[i].Score + ")\n";
+                stat += "Уровень " + (i + 1) + ": " + levels[i].Time.ToString() + " c. (ошибок: " + levels[i].Score + ")\n";
                 user.Score[i] = levels[i].Score;
                 user.Time[i] = levels[i].Time;
             }
-            stat += "Общее время: " + result.ToString() + " (ошибок: " + allscore + ")\n";
+            stat += "Общее время: " + result.ToString() + " c. (ошибок: " + allscore + ")\n";
+            SaveStatistic();
             return stat;
         }
 
         private void SaveStatistic()
         {
-
+            XmlJober.AddDataToFile(user);
         }
     }
 }

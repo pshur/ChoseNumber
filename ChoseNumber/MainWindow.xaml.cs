@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -48,24 +49,37 @@ namespace ChoseNumber
 
         private void startGame_Click(object sender, RoutedEventArgs e)
         {
-            /*if (_validAge && _validName)
+            if (_validAge && _validName)
             {
                 UserScore score = new UserScore(textBoxName.Text, (Gender)comboBoxSex.SelectedItem, int.Parse(textBoxAge.Text));
-                LavelGame game = new LavelGame(score);
+                LevelGame game = new LevelGame(score);
                 game.Show();
                 this.Close();
             } else
             {
                 MessageBox.Show("Поля заполнены некорректно!");
-            }*/
-            LavelGame game = new LavelGame(null);
-            game.Show();
-            this.Close();
+            }
         }
 
         private void showResults_Click(object sender, RoutedEventArgs e)
         {
+            List<UserScore> users = XmlJober.ReadAllData();
+            string stat = "";            
+            foreach (UserScore user in users)
+            {
+                stat += user.UserName + "\t" + user.Sex + "\t" + user.Age + "\n\n";
+                long result = 0;
+                int allscore = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    result += user.Time[i];
+                    allscore += user.Score[i];
+                    stat += "Уровень " + (i + 1) + ": " + user.Time[i].ToString() + " c. (ошибок: " + user.Score[i] + ")\n";
 
+                }
+                stat += "Общее время: " + result.ToString() + " c. (ошибок: " + allscore + ")\n\n";
+            }
+            MessageBox.Show(stat);
         }
     }
 }

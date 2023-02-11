@@ -3,15 +3,16 @@
     public class UserScore
     {
         public string UserName { get; } = "";
-        public char Sex { get; }
+        public string Sex { get; }
         public int Age { get; }
-        public int[] Score  { get; } = new int[5];
-        public double[] Time { get; } = new double[5];
+        public int[] Score  { get; set; } = new int[5];
+        public long[] Time { get; set; } = new long[5];
 
         public UserScore(string _name, Gender gender, int _age)
         {
             UserName = _name;
-            Sex = gender == Gender.Male ? 'М' : 'Ж';
+            Sex = gender == Gender.Male ? "М" : "Ж";
+            Age = _age;
         }
 
         public int AllScore()

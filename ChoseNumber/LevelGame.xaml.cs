@@ -3,18 +3,20 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Diagnostics;
 
 namespace ChoseNumber
 {
     /// <summary>
-    /// Логика взаимодействия для LavelGame.xaml
+    /// Логика взаимодействия для LevelGame.xaml
     /// </summary>
-    public partial class LavelGame : Window
+    public partial class LevelGame : Window
     {
         private string baseTitle = "Игровое поле ";
         private Gamer gamer;
         private int levelID = 1;
-        public LavelGame(UserScore _score)
+        private Stopwatch timer;
+        public LevelGame(UserScore _score)
         {
             InitializeComponent();
             this.Title = baseTitle;
@@ -29,6 +31,8 @@ namespace ChoseNumber
             BuildGameField();
             buttonStart.Visibility = Visibility.Hidden;
             gridGame.Visibility = Visibility.Visible;
+            timer = new Stopwatch();
+            timer.Start();
         }
 
         private void BuildGameField()
@@ -57,10 +61,13 @@ namespace ChoseNumber
             Highlight(button, step);
             if (gamer.IsFinish(levelID))
             {
-                if (levelID == 1)
-                {
+                timer.Stop();
+                gamer.SetTime(timer.ElapsedMilliseconds / 1000, levelID);
+                if (levelID == 5)
+                {                    
                     ShowStatisticByGame();
-                }
+                    return;
+                }               
                 levelID++;
                 buttonStart.Content = "Начать уровень " + levelID;
                 buttonStart.Visibility = Visibility.Visible;

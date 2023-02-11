@@ -4,7 +4,7 @@ namespace ChoseNumber
 {
     public class LevelInfo
     {
-        public double Time { get; set; } = 0.00;
+        public long Time { get; set; } = 0;
         public int Score { get; set; } = 0;
         public int Level { get; set; }
         private int[,] numbers = new int[5,5];
@@ -58,7 +58,7 @@ namespace ChoseNumber
 
         public bool IsFinish()
         {
-            return currentStep == 1;
+            return currentStep == 25;
         }
     }
 }
