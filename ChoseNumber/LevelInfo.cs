@@ -4,10 +4,15 @@ namespace ChoseNumber
 {
     public class LevelInfo
     {
+        // поле хранит время уровня
         public long Time { get; set; } = 0;
+        // поле хранит счет ошибок
         public int Score { get; set; } = 0;
+        // текущай уровень
         public int Level { get; set; }
+        // карта поля
         private int[,] numbers = new int[5,5];
+        // пред нажатое число
         private int currentStep = 0;
 
         public LevelInfo(int _level)
@@ -15,7 +20,7 @@ namespace ChoseNumber
             Level = _level;
             InitLevel();
         }
-
+        // инициализация уровня рандомными числами
         private void InitLevel()
         {
             Random rd = new Random();
@@ -39,7 +44,7 @@ namespace ChoseNumber
                 }
             }
         }
-
+        // делаем шаг, путем сравнивания нажатой кнопки и значения которое должно быть
         public bool MakeStep(int value)
         {
             if (value == currentStep + 1)
@@ -50,12 +55,12 @@ namespace ChoseNumber
             Score++;
             return false;
         }
-
+        // сетер для получения карты поля
         public int[,] GetNumbers()
         {
             return numbers;
         }
-
+        // проверка окончен ли уровень
         public bool IsFinish()
         {
             return currentStep == 25;

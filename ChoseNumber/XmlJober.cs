@@ -11,9 +11,12 @@ namespace ChoseNumber
 {
     public class XmlJober
     {
+        // имя файла
         private static string fileName = "score.xml";
+        // вывод информации в файл о пройденной игре
         public static void AddDataToFile(UserScore score)
         {
+            // если файла нет, создаем новый
             if (!File.Exists(fileName))
             {
                 XmlDocument doc = new XmlDocument();
@@ -21,9 +24,13 @@ namespace ChoseNumber
                 doc.AppendChild(rootNode);
                 doc.Save(fileName);
             }
+            // создаем док
             XmlDocument xDoc = new XmlDocument();
+            // читаем в него все содержимое
             xDoc.Load(fileName);
+            // получаем рут элемент
             XmlElement? xRoot = xDoc.DocumentElement;
+            // записываем информацию о пользователе
             XmlElement personElem = xDoc.CreateElement("person");
             XmlAttribute nameAttr = xDoc.CreateAttribute("name");
             XmlElement sexElem = xDoc.CreateElement("gender");
@@ -31,12 +38,14 @@ namespace ChoseNumber
             XmlText nameText = xDoc.CreateTextNode(score.UserName);
             XmlText sexText = xDoc.CreateTextNode(score.Sex);
             XmlText ageText = xDoc.CreateTextNode(score.Age.ToString());
+            // выводи информацию в док
             nameAttr.AppendChild(nameText);
             sexElem.AppendChild(sexText);
             ageElem.AppendChild(ageText);
             personElem.Attributes.Append(nameAttr);
             personElem.AppendChild(sexElem);
             personElem.AppendChild(ageElem);
+            // записываем информацию о результатах
             XmlElement scoresElem = xDoc.CreateElement("scores");
             for (int i = 0; i < 5; i++)
             {
@@ -53,17 +62,21 @@ namespace ChoseNumber
             XmlElement allscoreElem = xDoc.CreateElement("allscore");
             XmlText alltimeText = xDoc.CreateTextNode(score.AllTime().ToString());
             XmlText allscoreText = xDoc.CreateTextNode(score.AllScore().ToString());
+            // выводим в док инфомрацию о результатах
             alltimeAttr.AppendChild(alltimeText);
             allscoreElem.AppendChild(allscoreText);
             allscoreElem.Attributes.Append(alltimeAttr);
             personElem.AppendChild(scoresElem);
             personElem.AppendChild(allscoreElem);
+            // добавляем в рут полученную информацию
             xRoot?.AppendChild(personElem);
+            // сохраняем файл
             xDoc.Save(fileName);
         }
         public static List<UserScore> ReadAllData()
         {
             List<UserScore> data = new List<UserScore>();
+            // если файла нет, создаем его
             if (!File.Exists(fileName))
             {
                 XmlDocument doc = new XmlDocument();
@@ -119,6 +132,7 @@ namespace ChoseNumber
                     data.Add(user);
                 }
             }
+            // возвращаем массив данных
             return data;
         }
     }
