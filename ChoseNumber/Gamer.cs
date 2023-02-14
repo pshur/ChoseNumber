@@ -53,7 +53,7 @@ namespace ChoseNumber
             {
                 result += levels[i].Time;
                 allscore += levels[i].Score;
-                stat += "Уровень " + (i + 1) + ": " + levels[i].Time.ToString() + " c. (ошибок: " + levels[i].Score + ")\n";
+                stat += "Таблица " + (i + 1) + ": " + levels[i].Time.ToString() + " c. (ошибок: " + levels[i].Score + ")\n";
                 user.Score[i] = levels[i].Score;
                 user.Time[i] = levels[i].Time;
             }

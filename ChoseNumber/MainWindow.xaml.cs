@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MahApps.Metro.Controls;
 
 namespace ChoseNumber
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         // чек имя
         private bool _validName = false;
@@ -86,13 +87,13 @@ namespace ChoseNumber
                 {
                     result += user.Time[i];
                     allscore += user.Score[i];
-                    stat += "Уровень " + (i + 1) + ": " + user.Time[i].ToString() + " c. (ошибок: " + user.Score[i] + ")\n";
+                    stat += "Таблица " + (i + 1) + ": " + user.Time[i].ToString() + " c. (ошибок: " + user.Score[i] + ")\n";
 
                 }
                 stat += "Общее время: " + result.ToString() + " c. (ошибок: " + allscore + ")\n\n";
             }
             // вывод информации
-            MessageBox.Show(stat);
+            new NotificationDialog(stat).Show();
         }
     }
 }

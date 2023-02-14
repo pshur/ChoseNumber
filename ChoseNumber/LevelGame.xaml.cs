@@ -4,15 +4,16 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Diagnostics;
+using MahApps.Metro.Controls;
 
 namespace ChoseNumber
 {
     /// <summary>
     /// Логика взаимодействия для LevelGame.xaml
     /// </summary>
-    public partial class LevelGame : Window
+    public partial class LevelGame : MetroWindow
     {
-        private string baseTitle = "Игровое поле ";
+        private string baseTitle = "Таблица ";
         // объект игры
         private Gamer gamer;
         // уровень текущий
@@ -24,8 +25,8 @@ namespace ChoseNumber
             this.Title = baseTitle;
             // создание игры, инициализация карт
             gamer = new Gamer(_score);
-            buttonStart.Content = "Начать уровень " + levelID;
-            this.Title = baseTitle + "(уровень " + levelID + ")";
+            buttonStart.Content = "Начать таблицу " + levelID;
+            this.Title = baseTitle + levelID;
         }
         // кнопка начать уровень
         private void buttonStart_Click(object sender, RoutedEventArgs e)
@@ -58,7 +59,10 @@ namespace ChoseNumber
                     // прикрепляем событие для обработки кнопки
                     button.Click += CommonBtn_Click;
                     // красим кнопку
-                    button.Background = Brushes.DimGray;
+                    button.Background = Brushes.White;
+                    button.FontSize = 24;
+                    button.BorderBrush = Brushes.Black;
+                    button.FontWeight = FontWeights.Bold;
                     // добавляем кнопку в поле визуальное
                     gridGame.Children.Add(button);
                     Grid.SetColumn(button, i);
@@ -92,16 +96,16 @@ namespace ChoseNumber
                 }
                 // переход на след уровень
                 levelID++;
-                buttonStart.Content = "Начать уровень " + levelID;
                 buttonStart.Visibility = Visibility.Visible;
                 gridGame.Visibility = Visibility.Hidden;
-                this.Title = baseTitle + "(уровень " + levelID + ")";
+                buttonStart.Content = "Начать таблицу " + levelID;
+                this.Title = baseTitle + levelID;
             }
         }
         // вывод статистики, переход на главный экран
         private void ShowStatisticByGame()
-        {   
-            MessageBox.Show("Игра окончена\n" + gamer.Statistic());
+        {
+            new NotificationDialog("Все таблицы пройдены\n" + gamer.Statistic()).Show();
             MainWindow window = new MainWindow();
             window.Show();
             this.Close();
@@ -113,7 +117,7 @@ namespace ChoseNumber
                 button.Background = button.Background.CloneCurrentValue();
             // анимация перехода от текущего цвета к красному или зеленому и возврат назад
             ColorAnimation animHighlight = new ColorAnimation(step ? Colors.Green : Colors.Red, new Duration(TimeSpan.FromSeconds(0.2)));
-            ColorAnimation animDeHighlight = new ColorAnimation(Colors.DimGray, new Duration(TimeSpan.FromSeconds(0.2)));
+            ColorAnimation animDeHighlight = new ColorAnimation(Colors.White, new Duration(TimeSpan.FromSeconds(0.2)));
             // включение последовательности анимации
             animHighlight.Completed += (s, e) =>
             {

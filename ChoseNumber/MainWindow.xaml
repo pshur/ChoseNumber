@@ -1,19 +1,21 @@
-﻿<Window x:Class="ChoseNumber.MainWindow"
+﻿<mah:MetroWindow x:Class="ChoseNumber.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:ChoseNumber"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Главное окно" Height="270" Width="270">
-    <Grid Width="250" Height="250" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Label x:Name="labelName" Content="ФИО" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="50,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="20" Width="150" TextChanged="textBoxName_TextChanged"/>
-        <Label x:Name="labelSex" Content="Пол" HorizontalAlignment="Left" Margin="50,60,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBoxSex" HorizontalAlignment="Left" Margin="50,85,0,0" VerticalAlignment="Top" Width="150"/>
-        <Label x:Name="labelAge" Content="Возраст" HorizontalAlignment="Left" Margin="50,110,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxAge" HorizontalAlignment="Left" Margin="50,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="20" Width="150" TextChanged="textBoxAge_TextChanged"/>
-        <Button x:Name="startGame" Content="Старт" Width="150" HorizontalAlignment="Left" Margin="50,165,0,0" VerticalAlignment="Top" Height="20" Click="startGame_Click"/>
-        <Button x:Name="showResults" Content="Посмотреть результаты" Width="150" HorizontalAlignment="Left" Margin="50,195,0,0" VerticalAlignment="Top" Height="20" Click="showResults_Click"/>        
+        Title="ЭСНПДВ Шульте" Height="540" Width="500">
+    <Grid Width="500" Height="450" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Label x:Name="labelName" Content="ФИО" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="50,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="40" Width="400" TextChanged="textBoxName_TextChanged" FontSize="24"/>
+        <Label x:Name="labelSex" Content="Пол" HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <ComboBox x:Name="comboBoxSex" HorizontalAlignment="Left" Margin="50,140,0,0" VerticalAlignment="Top" Width="400" FontSize="24" Height="40"/>
+        <Label x:Name="labelAge" Content="Возраст" HorizontalAlignment="Left" Margin="50,190,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <TextBox x:Name="textBoxAge" HorizontalAlignment="Left" Margin="50,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="40" Width="400" TextChanged="textBoxAge_TextChanged" FontSize="24"/>
+        <Button x:Name="startGame" Content="Старт" Width="400" HorizontalAlignment="Left" Margin="50,280,0,0" VerticalAlignment="Top" Height="45" Click="startGame_Click" FontSize="24"/>
+        <Button x:Name="showResults" Content="Посмотреть результаты" Width="400" HorizontalAlignment="Left" Margin="50,335,0,0" VerticalAlignment="Top" Height="45" Click="showResults_Click" FontSize="24"/>        
     </Grid>
-</Window>
+</mah:MetroWindow>
