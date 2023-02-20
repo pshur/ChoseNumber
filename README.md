@@ -1,2 +1,2 @@
 # ChoseNumber
-Game "Chose a number"
+Game "Schulte Table"
